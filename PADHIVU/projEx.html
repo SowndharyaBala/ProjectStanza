@@ -1,0 +1,86 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <div>
+        <h2>Home Page</h2>
+    </div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="./projEx.js"></script>
+</head>
+<body>
+    <div>
+        <h2>Login Page</h2>
+        <div>
+            UserName : <input type="text" id="user" name="user"/>
+        </div>
+        <div>
+            Password : <input type="text" id="pswd" name="pswd"/>
+        </div>
+        <div>
+           <button type="button" onclick="loginUser()">Login</button>
+           <button type="button">Cancel</button>
+        </div>
+    </div>
+    <script>
+        function loginUser(){
+            let userName = document.getElementById("user").value;
+            let pswd = document.getElementById("pswd").value;
+            let login = new Login();
+            login.checkLogin(userName, pswd);
+        }
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script src="./controller.js"></script>
+</head>
+<body>
+    <div>
+        <h2>Register Page</h2>
+        <div>
+            UserName : <input type="text" id="user" name="user"/>
+        </div>
+        <div>
+            Password : <input type="text" id="pswd" name="pswd"/>
+        </div>
+        <div>
+            Confirm Password : <input type="text" id="cfpswd" name="cfpswd"/>
+        </div>
+        <div>
+           <button type="button" onclick="registerUser()">Register</button>
+           <button type="button">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+
+        function registerUser(){
+            let userName = document.getElementById("user").value;
+            let pswd = document.getElementById("pswd").value;
+            let cfPswd = document.getElementById('cfpswd').value;
+            let userReg = new RegisterUser();
+            userReg.userRegistration(userName, pswd, cfPswd);
+        }
+
+    </script>
+</body>
+</html>

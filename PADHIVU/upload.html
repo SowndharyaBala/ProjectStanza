@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  
+    <input type="file" accept="image/jpeg, image/png, image/jpg" id="ip">
+    <div id="op"></div>
+<script>
+    const input = document.getElementById('ip');
+const output = document.getElementById('op');
+let imagesArray = [];
+
+input.addEventListener("change", () => {
+  const file = input.files
+  imagesArray.push(file[0]);
+  console.log(imagesArray);
+  displayImages()
+})
+function displayImages() {
+  let images = ""
+  imagesArray.forEach((image, index) => {
+    images += `<div class="image">
+                <img src="${URL.createObjectURL(image)}" alt="image">
+                <span onclick="deleteImage(${index})">&times;</span>
+              </div>`
+  })
+  output.innerHTML = images;
+}
+function deleteImage(index) {
+  imagesArray.splice(index, 1)
+  displayImages();
+}
+</script>
+<style>
+    output{
+  width: 100%;
+  min-height: 150px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 15px;
+  position: relative;
+  border-radius: 5px;
+}
+
+output .image{
+  height: 150px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  position: relative;
+}
+
+output .image img{
+  height: 100%;
+  width: 100%;
+}
+
+output .image span {
+  position: absolute;
+  top: -4px;
+  right: 4px;
+  cursor: pointer;
+  font-size: 22px;
+  color: white;
+}
+
+output .image span:hover {
+  opacity: 0.8;
+}
+
+output .span--hidden{
+  visibility: hidden;
+}
+</style>
+</body>
+</html>

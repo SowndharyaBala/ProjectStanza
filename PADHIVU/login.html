@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE#edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<script src="regi.js" defer></script>-->
+    <title>login form</title>
+  
+    <head>
+        
+</head>
+
+<body>
+    <style>
+   *{
+        margin:0 ;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: rgb(1, 0, 8);
+        background: linear-gradient(90deg, rgba(1, 0, 8, 1) 0%, rgba(60, 115, 138, 1) 0%, rgba(12, 186, 222, 1) 100%);
+    }
+       
+    .wrapper{
+       
+            
+            background-color: white; 
+            color:rgba(12, 186, 222, 1);
+            display: block;
+            border: 3px solid rgba(12, 186, 222, 1);
+            padding: 50px;
+            height: 450px ; 
+            
+
+    }
+    h1{
+        text-align: center;
+        font-size: 36px;
+        position: relative;
+        top: -10px;
+        
+    }
+    .input-box{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+        
+    }
+    .input-box input{
+        margin-top: 5px;
+        padding: 10px;
+        border: 1px solid rgba(12, 186, 222, 1);
+        border-radius: 5px;
+        font-size: 20px;
+    
+    }
+    
+    .Wrapper .remember-Forgot {
+        display: flex;
+        justify-content: space-around;
+        font-size: 15px;
+        padding: 30px; 
+        
+        
+    }
+    
+    .remember-forgot label input {
+        accent-color: black;
+        margin-right: 3px;
+         margin: 8px;
+        
+    }
+    
+    .remember-forgot a{
+        color: blue;
+        text-decoration: none;
+        margin: 8px;
+        
+        
+    } 
+    .remember-forgot a:hover{
+        text-decoration: underline;
+    }   
+    
+    .btn{
+        
+        background-color: cornflowerblue;
+        color: white;
+        border: 1px solid;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 15px;
+        width: 100%;
+        position: relative;
+        top: 20px;
+    }
+
+    </style>
+     <div class="wrapper">
+
+        <form action="" method="post" id="form">
+
+            <h1>LOGIN</h1>
+            <div class="input-box">
+                <input type="text" placeholder="Username" id="username">
+                <div class="error"></div>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Password" id="password">
+               
+            </div>
+            <div class="input-box">
+                <input type="email" placeholder="Email" id="email">
+                
+            </div>
+            <div class="remember-forgot">
+                <label><input type="checkbox"> Remember Me </label>
+                    <a href="#">Forgot Password?</a>
+                
+            </div>
+             
+            <button type="submit" class="btn" onclick="addEventListener()">Login</button>
+            <!-- <div class="register-link">
+                <p>Don't have an account? <a 
+                    href="#">Register</a></p>
+            </div> -->
+        </form>
+    </div>
+
+    <script>
+        const form = {
+  email: document.querySelector("#signin-email"),
+  password: document.querySelector("#signin-password"),
+  submit: document.querySelector("#signin-btn-submit"),
+  messages: document.getElementById("form-messages"),
+};
+let button = form.submit.addEventListener("click", (e) => {
+  e.preventDefault();
+  const login = "https://ffcc-app.herokuapp.com/user/login";
+
+  fetch(login, {
+    method: "POST",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: form.email.value,
+      password: form.password.value,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      // code here //
+      if (data.error) {
+        alert("Error Password or Username"); /*displays error message*/
+      } else {
+        window.open(
+          "sett.html"
+        ); /*opens the target page while Id & password matches*/
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+        // var temploginDB=[];
+        // var username="";
+        // var password="";
+        // var email="";
+        
+        // function getInputs(){
+        //     let username = document.getElementById('username').value;
+        //     let password = document.getElementById('password').value;
+        //     let email = document.getElementById('email').value;
+        // }
+
+        // function resetData(){
+        //     username="";
+        //     password="";
+        //     email="";
+        // }
+
+        // function addDetails(){
+        //     getInputs();
+
+        //     let details={
+        //         "username": username.value,
+        //         "password": password.value,
+        //         "email": email.value
+        //     }
+
+        //     fetch( "https://api-generator.retool.com/4FfpPh/data",
+        //         { "method": "POST",
+        //               "body": JSON.stringify(details),
+        //             "headers": { "Content-Type":"application/json; charset=UTF-8"}})
+        //     .then((response)=> {
+        //         if(response && response.ok){
+        //             console.log(response.json);
+        //             return response.json();
+        //         }
+        //     })
+        //     .then((data)=>{
+        //         console.log(data);
+                
+        //         alert("Successfully Loggedin... : " + data.id );
+        //         getdetails();
+        //     })
+        //     console.log(temploginDB);
+        //     resetData();
+        //     }
+        //     function getDetails(){
+        //     fetch("https://retoolapi.dev/dQlLIf/data",{
+        //         "method":"GET",
+        //         "headers":{ "content-type":"application/json;charset=utf-8"}
+        //     })
+        //     .then((response)=>{return response.json();})
+        //     .then((data)=> {
+        //         console.log(data);
+        //         displayDetails(data)})
+        // }
+
+        // function displayDetails(details){
+            
+        //     let result = "";
+        //     for(let detail of details){
+        //         result += '<div class="row mt-4">' ;
+        //         result += '<div class="col">' + detail.username + '</div>';
+        //         result += '<div class="col">' + detail.password + '</div>';
+        //         result += '<div class="col">' + detail.email + '</div>';
+        //         // result += '<div class="col">' + account.ifsc + '</div>';
+        //         // result += '<div class="col">' + account.balance + '</div>';
+        //         // result +=   '<div class="col">' +
+        //         //                 '<button type="button" class="btn btn-warning" onclick="updateAccount('+ account.id +')">Update</button>' + '&nbsp;&nbsp;' +
+        //         //                 '<button type="button" class="btn btn-danger" onclick="deleteAccount('+ account.id +')">Delete</button>' +
+        //         //             '</div>' +
+        //                  '</div>';                                
+        //     }
+        //     document.getElementById('details').innerHTML = result;
+            
+        // }
+        // function login(){
+        //     let username = document.getElementById('username').value;
+        //     let password = document.getElementById('password').value;
+        //     let email = document.getElementById('email').value;
+        //     if(username.trim() == "" || password.trim() == "" ||email.trim() == ""){
+        //         alert("Please enter the details ");
+        //     }else{
+        //         alert("Successfully logged in... ");
+        //         window.location.href = "./aboutUs.html";
+        //     }
+        // }
+    </script>
+
+</body>
+</html>
