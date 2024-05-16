@@ -5,7 +5,7 @@ function setDb(){
     console.log(tempUserDb);
 }
 function getDb(){
-    console.log(tempUserDb);
+    console.log(tempUserDb); 
     let dbStr = sessionStorage.getItem("db");
     let dbArr = dbStr.split("/");
     console.log(dbStr + dbArr);
